@@ -25,11 +25,13 @@ function _update()
 
 	update_bullets()
 	update_dust()
+	update_stars()
 end
 
 function _draw()
 	cls()
 	print(#enemies, 9)
+	draw_stars()
 	draw_dust()
 	draw_enemies()
 	for b in all(bullets) do
@@ -39,5 +41,4 @@ function _draw()
 	if ship.state == 0 then -- ship is alive
 		spr(ship.sp, ship.x, ship.y)
 	end
-	draw_stars()
 end

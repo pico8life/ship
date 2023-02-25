@@ -61,6 +61,7 @@ function load_enemy_wave()
 end
 
 function circle_update(e)
+	if e.ptrn_radius < e.ptrn_radius_max then e.ptrn_radius += e.ptrn_radius_rate end
 	e.ptrn_angle += 2.5
 	if e.ptrn_angle > 360 then e.ptrn_angle = 0 end
 	e.x = e.originx+e.ptrn_radius*cos(e.ptrn_angle/360)

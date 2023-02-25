@@ -18,9 +18,11 @@ function init_enemies()
 				bound_x={0,screen},
 				bound_y={0,screen/2},
 				ptrn_func=circle_update,
-				ptrn_init=rnd(30,screen/4),
+				ptrn_init=rnd(50,screen/4),
 				ptrn_phase=0,
-				ptrn_radius=10,
+				ptrn_radius=0,
+				ptrn_radius_rate=.2,
+				ptrn_radius_max=10,
 				ptrn_angle=0
 			})
 		end
