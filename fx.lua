@@ -7,8 +7,8 @@ function add_new_dust(_x,_y,_dx,_dy,_l,_s,_g,_p,_f)
 		dy=_dy,
 		life=_l,
 		orig_life=_l,
-		rad=_s,
-		p=_p,
+		rad=_s, -- starting radius
+		p=_p, -- shrink percent
 		col=0, --set to color
 		grav=_g,
 		draw=function(self)

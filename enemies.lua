@@ -4,6 +4,13 @@ function update_enemies()
 		load_enemy_wave()
 	else
 		for e in all(enemies) do
+			-- Check if enemy is dead
+			if e.hp <= 0 then
+				-- explode animation
+				-- remove sprite
+				del(enemies, e)
+			end
+
 			-- out-of-bounds detection
 			if outbound(e.bound_x, e.x + e.dx) then
 				e.dx = -e.dx
@@ -42,14 +49,22 @@ function bullet_coll(b)
 		if check_coll({b.x, b.y}, {e.x, e.y}) then
 			sfx(1)
 			spark_fx(e.x,e.y,2)
-			del(enemies, e)
+			e.hp -= 1
+			e.flash = 5
+			return true
 		end
 	end
+	return false
 end
 
 function draw_enemies()
 	for e in all(enemies) do
-		spr(e.sp, e.x, e.y)
+		if e.flash > 0 then
+			spr(e.flash_sp, e.x, e.y)
+			e.flash -= 1
+		else
+			spr(e.sp, e.x, e.y)
+		end
 	end
 end
 

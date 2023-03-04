@@ -4,12 +4,12 @@ function init_enemies()
 	enemy_wave_dat = {}
 
 	-- first wave
-	for i=1,3 do
+	for i=1,1 do
 		local wave = {}
-		for j=1,3 do
+		for j=1,1 do
 			add(wave, {
 				sp=9,
-				x=j*32,
+				x=j*64,
 				y=0,
 				originx=0,
 				originy=0,
@@ -17,6 +17,9 @@ function init_enemies()
 				dy=.25,
 				bound_x={0,screen},
 				bound_y={0,screen/2},
+				hp=3,
+				flash=0,
+				flash_sp=11,
 				ptrn_func=circle_update,
 				ptrn_init=rnd(50,screen/4),
 				ptrn_phase=0,
