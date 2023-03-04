@@ -14,7 +14,7 @@ function add_new_missile(x,y)
 	end
 	if e_index==0 then
 		initial_dest.x=x
-		initial_dest.y=-100
+		initial_dest.y=-1
 	else
 		initial_dest.x=enemies[e_index].x
 		initial_dest.y=enemies[e_index].y
@@ -29,10 +29,13 @@ function add_new_missile(x,y)
 		accely=0.2,
 		vel=-2,
 		flare=0,
-		target=e_index,
-		target_dead=false,
+		target=enemies[e_index],
 		target_coords={x=initial_dest.x,y=initial_dest.y},
 		update=function(self)
+			if type(self.target)!="nil" then
+				self.target_coords.x=self.target.x
+				self.target_coords.y=self.target.y
+			end
 
 			function target_missile()
 				local x_dist=self.target_coords.x-self.x
@@ -62,13 +65,6 @@ function add_new_missile(x,y)
 			target_missile()
 			if bullet_coll(self) then
 				del(missiles, self)
-			end
-			if not self.target_dead then
-				if enemies[self.target].hp <= 0 then
-					self.target_dead = true
-				end
-				self.target_coords.x=enemies[self.target].x
-				self.target_coords.y=enemies[self.target].y
 			end
 		end,
 		draw=function(self)
